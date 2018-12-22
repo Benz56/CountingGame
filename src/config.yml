@@ -1,0 +1,14 @@
+
+# Beskriv.
+InvertBlacklist: false
+BlacklistedWorlds:
+  #- world
+
+Rewards:
+  50:
+    - 'broadcast 50'
+    - 'broadcast 50!'
+  100:
+    - 'broadcast 100'
+    - 'broadcast 100!'
+  150: 'broadcast 150'

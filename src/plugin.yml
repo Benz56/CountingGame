@@ -1,0 +1,15 @@
+name: CountingGame
+version: 1.0.0
+api-version: 1.13
+author: Benz56
+description: Bring life to your chat!
+main: com.benzoft.countinggame.CountingGame
+commands:
+  countinggame:
+    usage: /countinggame
+    description: User commands.
+    aliases: [counting, cgame, cg]
+  countinggameadmin:
+    usage: /countinggameadmin
+    description: Admin commands.
+    aliases: [countingadmin, cgameadmin, cga]
