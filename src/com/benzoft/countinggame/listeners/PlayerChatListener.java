@@ -1,11 +1,13 @@
 package com.benzoft.countinggame.listeners;
 
+import com.benzoft.countinggame.CGReward;
 import com.benzoft.countinggame.CountingGame;
-import com.benzoft.countinggame.files.CGReward;
 import com.benzoft.countinggame.files.ConfigFile;
 import com.benzoft.countinggame.files.DataFile;
 import com.benzoft.countinggame.files.MessagesFile;
+import com.benzoft.countinggame.files.RewardsFile;
 import com.benzoft.countinggame.utils.StringUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -27,6 +29,7 @@ public class PlayerChatListener implements Listener {
     public void chatListener(final AsyncPlayerChatEvent event) {
         if (event == null || event.getPlayer() == null) return;
         final Player sender = event.getPlayer();
+        countingGame.getBroadcaster().getTask().setCanBroadcast(true);
 
         if (!ConfigFile.getInstance().isCGWorld(sender.getWorld())) return;
 
@@ -40,20 +43,20 @@ public class PlayerChatListener implements Listener {
 
         event.setCancelled(true);
 
-        if (sender.getUniqueId().equals(this.lastCounter)) {
+        if (sender.getUniqueId().equals(lastCounter)) {
             StringUtil.msgSend(sender, MessagesFile.getInstance().getLastCounter());
             return;
         }
-        this.lastCounter = sender.getUniqueId();
+        lastCounter = sender.getUniqueId();
 
         DataFile.getInstance().incrementCount();
-        this.countingGame.getBroadcaster().getTask().resetIdleTime();
+        countingGame.getBroadcaster().getTask().resetIdleTime();
 
         final String message = MessagesFile.getInstance().getCountSent().replaceAll("%player%", sender.getName()).replaceAll("%number%", String.valueOf(number)).replaceAll("%nextNumber%", String.valueOf(number + 1));
         DataFile.getInstance().getCGPlayers().forEach(player -> StringUtil.msgSend(player, message));
 
-        final CGReward reward = ConfigFile.getInstance().getReward(DataFile.getInstance().getCount());
-        if (reward != null) reward.execute(sender);
+        final CGReward reward = RewardsFile.getInstance().getReward(DataFile.getInstance().getCount());
+        if (reward != null) Bukkit.getScheduler().runTask(countingGame, () -> reward.execute(sender));
 
     }
 }

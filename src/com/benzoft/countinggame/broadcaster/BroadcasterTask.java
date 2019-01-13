@@ -8,22 +8,28 @@ public class BroadcasterTask implements Runnable {
 
     private final long idleTime;
 
+    private boolean canBroadcast;
     private long currentIdleTime;
 
-    public BroadcasterTask(final long idleTime) {
+    BroadcasterTask(final long idleTime) {
         this.idleTime = idleTime;
     }
 
     @Override
     public void run() {
-        if (this.currentIdleTime > this.idleTime) {
+        if (canBroadcast && currentIdleTime > idleTime) {
             final String message = MessagesFile.getInstance().getIdleBroadcast().replaceAll("%nextNumber%", String.valueOf(DataFile.getInstance().getCount() + 1));
             DataFile.getInstance().getCGPlayers().forEach(player -> StringUtil.msgSend(player, message));
+            canBroadcast = false;
         }
-        this.currentIdleTime = this.currentIdleTime > this.idleTime ? 0 : this.currentIdleTime + 1;
+        currentIdleTime = currentIdleTime > idleTime ? 0 : currentIdleTime + 1;
     }
 
     public void resetIdleTime() {
-        this.currentIdleTime = 0;
+        currentIdleTime = 0;
+    }
+
+    public void setCanBroadcast(final boolean canBroadcast) {
+        this.canBroadcast = canBroadcast;
     }
 }

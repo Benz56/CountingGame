@@ -18,6 +18,6 @@ public enum CGPerm {
     }
 
     public boolean checkPermission(final Player player) {
-        return player == null || player.isOp() || player.hasPermission(this.permission);
+        return player == null || player.isOp() || player.hasPermission(permission);
     }
 }

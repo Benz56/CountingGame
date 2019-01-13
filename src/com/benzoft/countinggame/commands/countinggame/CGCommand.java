@@ -2,10 +2,12 @@ package com.benzoft.countinggame.commands.countinggame;
 
 import com.benzoft.countinggame.CGPerm;
 import com.benzoft.countinggame.CountingGame;
-import com.benzoft.countinggame.commands.ACommand;
+import com.benzoft.countinggame.commands.AbstractCommand;
+import com.benzoft.countinggame.files.MessagesFile;
+import com.benzoft.countinggame.utils.StringUtil;
 import org.bukkit.entity.Player;
 
-public class CGCommand extends ACommand {
+public class CGCommand extends AbstractCommand {
 
     public CGCommand(final CountingGame countingGame, final String commandName) {
         super(countingGame, commandName,
@@ -19,6 +21,8 @@ public class CGCommand extends ACommand {
 
     @Override
     public void onCommand(final Player player, final String[] args) {
-        this.getSubCommands().stream().filter(subCommand -> subCommand.getName().equalsIgnoreCase("help")).findFirst().ifPresent(subCommand -> subCommand.onCommand(player, args));
+        if (CGPerm.COMMANDS_HELP.checkPermission(player)) {
+            getSubCommands().stream().filter(subCommand -> subCommand.getName().equalsIgnoreCase("help")).findFirst().ifPresent(subCommand -> subCommand.onCommand(player, args));
+        } else StringUtil.msgSend(player, MessagesFile.getInstance().getInvalidPermission());
     }
 }

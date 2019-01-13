@@ -9,7 +9,7 @@ import java.util.Arrays;
 public final class CommandRegistry {
 
     public static void registerCommands(final CountingGame countingGame) {
-        for (final ACommand command : Arrays.asList(
+        for (final AbstractCommand command : Arrays.asList(
                 new CGCommand(countingGame, "countinggame"),
                 new CGACommand(countingGame, "countinggameadmin"))) {
             countingGame.getCommand(command.getCommandName()).setExecutor(command);

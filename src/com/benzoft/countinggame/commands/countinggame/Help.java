@@ -1,12 +1,12 @@
 package com.benzoft.countinggame.commands.countinggame;
 
 import com.benzoft.countinggame.CGPerm;
-import com.benzoft.countinggame.commands.ASubCommand;
+import com.benzoft.countinggame.commands.AbstractSubCommand;
 import com.benzoft.countinggame.utils.JsonUtil;
 import net.md_5.bungee.api.chat.ClickEvent;
 import org.bukkit.entity.Player;
 
-public class Help extends ASubCommand {
+public class Help extends AbstractSubCommand {
 
     public Help(final String name, final CGPerm permission, final boolean playerOnly, final String... aliases) {
         super(name, permission, playerOnly, aliases);

@@ -13,13 +13,13 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class ACommand implements CommandExecutor {
+public abstract class AbstractCommand implements CommandExecutor {
 
     private final CountingGame countingGame;
     private final String commandName;
-    private final Set<ASubCommand> subCommands;
+    private final Set<AbstractSubCommand> subCommands;
 
-    public ACommand(final CountingGame countingGame, final String commandName, final ASubCommand... subCommands) {
+    protected AbstractCommand(final CountingGame countingGame, final String commandName, final AbstractSubCommand... subCommands) {
         this.countingGame = countingGame;
         this.commandName = commandName;
         this.subCommands = new HashSet<>(Arrays.asList(subCommands));
@@ -35,9 +35,12 @@ public abstract class ACommand implements CommandExecutor {
         }
 
         if (args.length != 0) {
-            for (final ASubCommand subCommand : this.subCommands) {
+            for (final AbstractSubCommand subCommand : subCommands) {
                 if (!subCommand.getName().equalsIgnoreCase(args[0]) && subCommand.getAliases().stream().noneMatch(alias -> alias.equalsIgnoreCase(args[0]))) continue;
-                if (!this.checkPermission(player, subCommand.getPermission())) return true;
+                if (!subCommand.getPermission().checkPermission(player)) {
+                    StringUtil.msgSend(player, MessagesFile.getInstance().getInvalidPermission());
+                    return true;
+                }
                 if (player == null && subCommand.playerOnly()) {
                     StringUtil.msgSend(null, MessagesFile.getInstance().getPlayerOnly());
                 } else subCommand.onCommand(player, args);
@@ -45,28 +48,21 @@ public abstract class ACommand implements CommandExecutor {
             }
         }
 
-        this.onCommand(player, args);
+        onCommand(player, args);
         return true;
     }
 
-    public abstract void onCommand(final Player player, final String[] args);
-
-    public boolean checkPermission(final Player player, final CGPerm permission) {
-        if (permission != null && !permission.checkPermission(player)) {
-            StringUtil.msgSend(player, MessagesFile.getInstance().getInvalidPermission());
-            return false;
-        } else return true;
-    }
+    protected abstract void onCommand(final Player player, final String[] args);
 
     public CountingGame getCountingGame() {
-        return this.countingGame;
+        return countingGame;
     }
 
-    public String getCommandName() {
-        return this.commandName;
+    String getCommandName() {
+        return commandName;
     }
 
-    public Set<ASubCommand> getSubCommands() {
-        return this.subCommands;
+    protected Set<AbstractSubCommand> getSubCommands() {
+        return subCommands;
     }
 }

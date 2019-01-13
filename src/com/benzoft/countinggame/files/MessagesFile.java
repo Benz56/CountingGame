@@ -2,7 +2,7 @@ package com.benzoft.countinggame.files;
 
 import java.io.IOException;
 
-public final class MessagesFile extends AFile {
+public final class MessagesFile extends AbstractFile {
 
     private static MessagesFile file;
 
@@ -33,13 +33,13 @@ public final class MessagesFile extends AFile {
 
     private MessagesFile() {
         super("messages.yml");
-        this.setDefaults();
+        setDefaults();
     }
 
     @Override
     public void setDefaults() {
-        this.setHeader(
-                "This is the Message file for all CountingGame messages.",
+        setHeader(
+                "This is the Message file for all Counting Game messages.",
                 "",
                 "All messages are fully customizable and support color codes, formatting and ASCII symbols.",
                 "Set the Prefix and use %prefix% to add the corresponding prefix to a message.",
@@ -52,117 +52,116 @@ public final class MessagesFile extends AFile {
                 " - [\"Message\",\"/Command\",\"Suggest\"]",
                 " - [\"Message\",\"/Command\",\"Hover\",\"Suggest\"]",
                 "You can add as many events to a message as you want. Example:",
-                "'%prefix% &cInvalid arguments! [\"&c&n&oHelp\",\"/gps help\",\"&aClick to get help!\"]'",
-                "The \"Suggest\" tag is used if the click event should suggest the command. Default is Run.",
-                "");
+                "'%prefix% &cInvalid arguments! [\"&c&n&oHelp\",\"/countinggame help\",\"&aClick to get help!\"]'",
+                "The \"Suggest\" tag is used if the click event should suggest the command. Default is Run.");
 
-        this.prefix = (String) this.add("Prefix", "&7[&9Counting Game&7]");
-        this.invalidPermission = (String) this.add("Messages.General.InvalidPermission", "%prefix% &cYou do not have permission to do this!");
-        this.noCommands = (String) this.add("Messages.General.NoCommands", "Unknown command. Type \"/help\" for help.");
-        this.unknownPlayer = (String) this.add("Messages.General.UnknownPlayer", "%prefix% &cUnknown Player!");
-        this.playerOnly = (String) this.add("Messages.General.PlayerOnly", "%prefix% &cCommand can only be used as a Player!");
-        this.invalidArguments = (String) this.add("Messages.General.InvalidArguments", "%prefix% &cInvalid arguments! [\"&c&n&oHelp\",\"/countinggame help\",\"&aClick to get help!\"]");
+        prefix = (String) add("Prefix", "&7[&9Counting Game&7]");
+        invalidPermission = (String) add("Messages.General.InvalidPermission", "%prefix% &cYou do not have permission to do this!");
+        noCommands = (String) add("Messages.General.NoCommands", "Unknown command. Type \"/help\" for help.");
+        unknownPlayer = (String) add("Messages.General.UnknownPlayer", "%prefix% &cUnknown Player!");
+        playerOnly = (String) add("Messages.General.PlayerOnly", "%prefix% &cCommand can only be used as a Player!");
+        invalidArguments = (String) add("Messages.General.InvalidArguments", "%prefix% &cInvalid arguments! [\"&c&n&oHelp\",\"/countinggame help\",\"&aClick to get help!\"]");
 
-        this.countSent = (String) this.add("Messages.CountingGame.CountSent", "%prefix% &a%player%&e counted &a%number%! &eNext number is &a%nextNumber%!");
-        this.lastCounter = (String) this.add("Messages.CountingGame.LastCounter", "%prefix% &cAnother player has to count before you can again!");
-        this.idleBroadcast = (String) this.add("Messages.CountingGame.IdleBroadcast", "%prefix% &eGet counting! The next count is &a%nextNumber%!");
-        this.muted = (String) this.add("Messages.CountingGame.Muted", "%prefix% &aCounting Game muted!");
-        this.mutedPlayer = (String) this.add("Messages.CountingGame.MutedPlayer", "%prefix% &aMuted Counting Game for %player%!");
-        this.alreadyMuted = (String) this.add("Messages.CountingGame.AlreadyMuted", "%prefix% &cYou're already muted!");
-        this.alreadyMutedPlayer = (String) this.add("Messages.CountingGame.AlreadyMutedPlayer", "%prefix% &c%player% is already muted!");
-        this.unmuted = (String) this.add("Messages.CountingGame.Unmuted", "%prefix% &aCounting Game unmuted!");
-        this.unmutedPlayer = (String) this.add("Messages.CountingGame.UnmutedPlayer", "%prefix% &aUnmuted Counting Game for %player%!");
-        this.notMuted = (String) this.add("Messages.CountingGame.NotMuted", "%prefix% &cYou're not muted!");
-        this.notMutedPlayer = (String) this.add("Messages.CountingGame.NotMutedPlayer", "%prefix% &c%player% is not muted!");
-        this.nextNumber = (String) this.add("Messages.CountingGame.NextNumber", "%prefix% &eThe next number is &a%nextNumber%!");
+        countSent = (String) add("Messages.CountingGame.CountSent", "%prefix% &a%player%&e counted &a%number%! &eThe next number is &a%nextNumber%!");
+        lastCounter = (String) add("Messages.CountingGame.LastCounter", "%prefix% &cAnother player has to count before you can again!");
+        idleBroadcast = (String) add("Messages.CountingGame.IdleBroadcast", "%prefix% [\"&eGet counting! The next number is &a%nextNumber%!\",\"&eType &a%nextNumber% &ein chat!\"]");
+        muted = (String) add("Messages.CountingGame.Muted", "%prefix% &aCounting Game muted!");
+        mutedPlayer = (String) add("Messages.CountingGame.MutedPlayer", "%prefix% &aMuted Counting Game for %player%!");
+        alreadyMuted = (String) add("Messages.CountingGame.AlreadyMuted", "%prefix% &cYou're already muted!");
+        alreadyMutedPlayer = (String) add("Messages.CountingGame.AlreadyMutedPlayer", "%prefix% &c%player% is already muted!");
+        unmuted = (String) add("Messages.CountingGame.Unmuted", "%prefix% &aCounting Game unmuted!");
+        unmutedPlayer = (String) add("Messages.CountingGame.UnmutedPlayer", "%prefix% &aUnmuted Counting Game for %player%!");
+        notMuted = (String) add("Messages.CountingGame.NotMuted", "%prefix% &cYou're not muted!");
+        notMutedPlayer = (String) add("Messages.CountingGame.NotMutedPlayer", "%prefix% &c%player% is not muted!");
+        nextNumber = (String) add("Messages.CountingGame.NextNumber", "%prefix% &eThe next number is &a%nextNumber%!");
 
-        this.configReload = (String) this.add("Messages.Admin.ConfigurationsReloaded", "%prefix% &aConfiguration files successfully reloaded!");
-        this.save();
+        configReload = (String) add("Messages.Admin.ConfigurationsReloaded", "%prefix% &aConfiguration files successfully reloaded!");
+        save();
     }
 
     @Override
-    public void save() {
+    void save() {
         try {
-            this.getConfig().save(this.getFile());
+            getConfig().save(getFile());
         } catch (final IOException e) {
             e.printStackTrace();
         }
     }
 
     public String getPrefix() {
-        return this.prefix;
+        return prefix;
     }
 
     public String getInvalidPermission() {
-        return this.invalidPermission;
+        return invalidPermission;
     }
 
     public String getNoCommands() {
-        return this.noCommands;
+        return noCommands;
     }
 
     public String getUnknownPlayer() {
-        return this.unknownPlayer;
+        return unknownPlayer;
     }
 
     public String getPlayerOnly() {
-        return this.playerOnly;
+        return playerOnly;
     }
 
     public String getInvalidArguments() {
-        return this.invalidArguments;
+        return invalidArguments;
     }
 
     public String getCountSent() {
-        return this.countSent;
+        return countSent;
     }
 
     public String getLastCounter() {
-        return this.lastCounter;
+        return lastCounter;
     }
 
     public String getIdleBroadcast() {
-        return this.idleBroadcast;
+        return idleBroadcast;
     }
 
     public String getMuted() {
-        return this.muted;
+        return muted;
     }
 
     public String getMutedPlayer() {
-        return this.mutedPlayer;
+        return mutedPlayer;
     }
 
     public String getAlreadyMuted() {
-        return this.alreadyMuted;
+        return alreadyMuted;
     }
 
     public String getAlreadyMutedPlayer() {
-        return this.alreadyMutedPlayer;
+        return alreadyMutedPlayer;
     }
 
     public String getUnmuted() {
-        return this.unmuted;
+        return unmuted;
     }
 
     public String getUnmutedPlayer() {
-        return this.unmutedPlayer;
+        return unmutedPlayer;
     }
 
     public String getNotMuted() {
-        return this.notMuted;
+        return notMuted;
     }
 
     public String getNotMutedPlayer() {
-        return this.notMutedPlayer;
+        return notMutedPlayer;
     }
 
     public String getNextNumber() {
-        return this.nextNumber;
+        return nextNumber;
     }
 
     public String getConfigReload() {
-        return this.configReload;
+        return configReload;
     }
 
     public static MessagesFile getInstance() {

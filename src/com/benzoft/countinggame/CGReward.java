@@ -1,5 +1,6 @@
-package com.benzoft.countinggame.files;
+package com.benzoft.countinggame;
 
+import com.benzoft.countinggame.files.DataFile;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -23,27 +24,25 @@ public class CGReward implements Comparable<CGReward> {
 
     public void execute(final Player player) {
         final String count = String.valueOf(DataFile.getInstance().getCount());
-        for (final String reward : this.rewards) {
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), reward.replaceAll("%player%", player.getName()).replaceAll("%number%", count).replaceAll("%count%", count));
-        }
+        rewards.forEach(reward -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), reward.substring(reward.startsWith("/") ? 1 : 0).replaceAll("%player%", player.getName()).replaceAll("%number%", count).replaceAll("%count%", count)));
 
     }
 
     public int getTargetCount() {
-        return this.targetCount;
+        return targetCount;
     }
 
     public List<String> getRewards() {
-        return this.rewards;
+        return rewards;
     }
 
     @Override
     public String toString() {
-        return "&7&l● &e" + this.targetCount;
+        return "&7&l● &e" + targetCount;
     }
 
     @Override
     public int compareTo(@Nonnull final CGReward o) {
-        return this.targetCount - o.targetCount;
+        return targetCount - o.targetCount;
     }
 }

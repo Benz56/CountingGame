@@ -29,16 +29,16 @@ public class JsonUtil {
         this.hoverMessage = hoverMessage;
         this.clickEvent = clickEvent;
         this.action = action;
-        this.sendMessage();
+        sendMessage();
     }
 
     private void sendMessage() {
-        if (this.player != null) {
-            final TextComponent tc = new TextComponent(StringUtil.translate(this.message));
-            if (this.hoverMessage != null)
-                tc.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(StringUtil.translate(this.hoverMessage)).create()));
-            if (this.clickEvent != null) tc.setClickEvent(new ClickEvent(this.action, this.clickEvent));
-            this.player.spigot().sendMessage(tc);
-        } else Bukkit.getServer().getConsoleSender().sendMessage(StringUtil.translate(this.message.replaceAll("●", "-")));
+        if (player != null) {
+            final TextComponent tc = new TextComponent(StringUtil.translate(message));
+            if (hoverMessage != null)
+                tc.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(StringUtil.translate(hoverMessage)).create()));
+            if (clickEvent != null) tc.setClickEvent(new ClickEvent(action, clickEvent));
+            player.spigot().sendMessage(tc);
+        } else Bukkit.getServer().getConsoleSender().sendMessage(StringUtil.translate(message.replaceAll("●", "-")));
     }
 }
