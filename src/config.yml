@@ -26,3 +26,9 @@ InvertBlacklist: false
 # participating in the game. Players won't be able to send a number in a blacklisted world.
 BlacklistedWorlds:
   #- world
+
+# Update Checker.
+# false: All OPs are notified of a new update when they join.
+# true: OPs are only notified if they have the countinggame.update permission as well.
+# N.B. any user with the countinggame.update permission is notified; OP or not.
+UpdateCheckerPermissionOnly: false

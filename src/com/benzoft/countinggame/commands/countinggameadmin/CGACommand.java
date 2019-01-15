@@ -11,14 +11,14 @@ public class CGACommand extends AbstractCommand {
 
     public CGACommand(final CountingGame countingGame, final String commandName) {
         super(countingGame, commandName,
-                new Help("help", CGPerm.CG_ADMIN, false, "h"),
-                new Reload(countingGame, "reload", CGPerm.CG_ADMIN, false, "rel", "r")
+                new Help("help", CGPerm.ADMIN, false, "h"),
+                new Reload(countingGame, "reload", CGPerm.ADMIN, false, "rel", "r")
         );
     }
 
     @Override
     public void onCommand(final Player player, final String[] args) {
-        if (CGPerm.CG_ADMIN.checkPermission(player)) {
+        if (CGPerm.ADMIN.checkPermission(player)) {
             getSubCommands().stream().filter(subCommand -> subCommand.getName().equalsIgnoreCase("help")).findFirst().ifPresent(subCommand -> subCommand.onCommand(player, args));
         } else StringUtil.msgSend(player, MessagesFile.getInstance().getNoCommands());
     }

@@ -9,12 +9,17 @@ public enum CGPerm {
     COMMANDS_MUTE("countinggame.commands.mute"),
     COMMANDS_REWARDS("countinggame.commands.rewards"),
     COMMANDS_NEXT("countinggame.commands.next"),
-    CG_ADMIN("countinggame.admin");
+    ADMIN("countinggame.admin"),
+    UPDATE("countinggame.update");
 
     private final String permission;
 
     CGPerm(final String permission) {
         this.permission = permission;
+    }
+
+    public String getPermissionString() {
+        return permission;
     }
 
     public boolean checkPermission(final Player player) {

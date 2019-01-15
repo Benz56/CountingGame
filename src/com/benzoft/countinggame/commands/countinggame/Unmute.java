@@ -21,7 +21,7 @@ public class Unmute extends AbstractSubCommand {
                 StringUtil.msgSend(player, !DataFile.getInstance().unmutePlayer(player) ? MessagesFile.getInstance().getNotMuted() : MessagesFile.getInstance().getUnmuted());
             } else StringUtil.msgSend(null, MessagesFile.getInstance().getPlayerOnly());
         } else if (args.length == 2) {
-            if (CGPerm.CG_ADMIN.checkPermission(player)) {
+            if (CGPerm.ADMIN.checkPermission(player)) {
                 final Player target = Bukkit.getPlayer(args[1]);
                 if (target != null) {
                     final boolean unmuted = DataFile.getInstance().unmutePlayer(target);

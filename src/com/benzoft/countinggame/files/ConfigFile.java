@@ -12,6 +12,7 @@ public final class ConfigFile {
     private final boolean invert;
     private final List<String> blacklist;
     private final long idleBroadcast;
+    private final boolean updateCheckerPermissionOnly;
 
     private ConfigFile() {
         CountingGame.getPlugin(CountingGame.class).saveDefaultConfig();
@@ -19,6 +20,7 @@ public final class ConfigFile {
         idleBroadcast = config.getLong("IdleBroadcast", 450);
         invert = config.getBoolean("InvertBlacklist", false);
         blacklist = config.getStringList("Blacklist");
+        updateCheckerPermissionOnly = config.getBoolean("UpdateCheckerPermissionOnly", false);
     }
 
     public boolean isCGWorld(final World world) {
@@ -27,6 +29,10 @@ public final class ConfigFile {
 
     public long getIdleBroadcast() {
         return idleBroadcast;
+    }
+
+    public boolean isUpdateCheckerPermissionOnly() {
+        return updateCheckerPermissionOnly;
     }
 
     public static ConfigFile getInstance() {

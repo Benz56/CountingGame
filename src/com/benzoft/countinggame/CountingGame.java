@@ -16,6 +16,8 @@ public class CountingGame extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        new Metrics(this);
+        new UpdateChecker(this).checkForUpdate();
         getDataFolder().mkdirs();
         ConfigFile.getInstance();
         DataFile.getInstance().setDefaults();
