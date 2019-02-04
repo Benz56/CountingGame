@@ -38,9 +38,9 @@ public class Rewards extends AbstractSubCommand {
         StringUtil.msgSend(player, "&7Hover over any of the\nentries to see the rewards.");
         final int startIndex = (page - 1) * ENTRIES_PER_PAGE;
         final int endIndex = startIndex + 8 > RewardsFile.getInstance().getRewards().size() ? RewardsFile.getInstance().getRewards().size() : startIndex + 8;
-        RewardsFile.getInstance().getRewards().subList(startIndex, endIndex).forEach(reward -> new JsonUtil(player, reward.toString(), "&eRewards:\n" + reward.getRewards().stream().map(command -> "&7&l ● &r" + (command.startsWith("/") ? command : "/" + command)).collect(Collectors.joining("\n"))));
+        RewardsFile.getInstance().getRewards().subList(startIndex, endIndex).forEach(reward -> JsonUtil.sendJSON(player, reward.toString(), "&eRewards:\n" + reward.getRewards().stream().map(command -> "&7&l ● &r" + (command.startsWith("/") ? command : "/" + command)).collect(Collectors.joining("\n"))));
         if (page != pages) {
-            new JsonUtil(player, "&eUse &c/cg rewards " + (page + 1) + "&e to go\n&eto the next page.", "&7Click to go to the next page.", "/cg rewards " + (page + 1), ClickEvent.Action.RUN_COMMAND);
+            JsonUtil.sendJSON(player, "&eUse &c/cg rewards " + (page + 1) + "&e to go\n&eto the next page.", "&7Click to go to the next page.", "/cg rewards " + (page + 1), ClickEvent.Action.RUN_COMMAND);
         }
     }
 }

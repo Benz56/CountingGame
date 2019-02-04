@@ -15,7 +15,7 @@
 # If the last message sent in chat is by the broadcaster it won't send a message again.
 #
 # Set this to -1 to disable the broadcaster entirely.
-IdleBroadcast: 450
+IdleBroadcast: 900
 
 # By inverting the blacklist you're essentially creating a whitelist i.e. enabled worlds list.
 # Use this if you have e.g. 10 worlds and only want to enable The Counting Game in one world.

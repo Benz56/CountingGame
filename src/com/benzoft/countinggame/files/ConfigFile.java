@@ -17,7 +17,7 @@ public final class ConfigFile {
     private ConfigFile() {
         CountingGame.getPlugin(CountingGame.class).saveDefaultConfig();
         final FileConfiguration config = CountingGame.getPlugin(CountingGame.class).getConfig();
-        idleBroadcast = config.getLong("IdleBroadcast", 450);
+        idleBroadcast = config.getLong("IdleBroadcast", 900);
         invert = config.getBoolean("InvertBlacklist", false);
         blacklist = config.getStringList("Blacklist");
         updateCheckerPermissionOnly = config.getBoolean("UpdateCheckerPermissionOnly", false);

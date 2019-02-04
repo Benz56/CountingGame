@@ -7,32 +7,21 @@ import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-public class JsonUtil {
+public final class JsonUtil {
 
-    private final Player player;
-    private final String message;
-    private final String hoverMessage;
-    private final String clickEvent;
-    private final ClickEvent.Action action;
-
-    public JsonUtil(final Player player, final String message) {
-        this(player, message, null, null, null);
+    public static void sendJSON(final Player player, final String message) {
+        sendJSON(player, message, null);
     }
 
-    public JsonUtil(final Player player, final String message, final String hoverMessage) {
-        this(player, message, hoverMessage, null, null);
+    public static void sendJSON(final Player player, final String message, final String hoverMessage) {
+        sendJSON(player, message, hoverMessage, null);
     }
 
-    public JsonUtil(final Player player, final String message, final String hoverMessage, final String clickEvent, final ClickEvent.Action action) {
-        this.player = player;
-        this.message = message;
-        this.hoverMessage = hoverMessage;
-        this.clickEvent = clickEvent;
-        this.action = action;
-        sendMessage();
+    public static void sendJSON(final Player player, final String message, final String hoverMessage, final String clickEvent) {
+        sendJSON(player, message, hoverMessage, clickEvent, ClickEvent.Action.RUN_COMMAND);
     }
 
-    private void sendMessage() {
+    public static void sendJSON(final Player player, final String message, final String hoverMessage, final String clickEvent, final ClickEvent.Action action) {
         if (player != null) {
             final TextComponent tc = new TextComponent(StringUtil.translate(message));
             if (hoverMessage != null)
