@@ -57,6 +57,10 @@ public final class DataFile extends AbstractFile {
         return count;
     }
 
+    public void setCount(final int count) {
+        this.count = count;
+    }
+
     public void incrementCount() {
         count++;
     }

@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 
 public class Help extends AbstractSubCommand {
 
-    public Help(final String name, final CGPerm permission, final boolean playerOnly, final String... aliases) {
+    Help(final String name, final CGPerm permission, final boolean playerOnly, final String... aliases) {
         super(name, permission, playerOnly, aliases);
     }
 
@@ -17,7 +17,8 @@ public class Help extends AbstractSubCommand {
         JsonUtil.sendJSON(player, "&9&m&l----------------------------------");
         JsonUtil.sendJSON(player, " &7&oBelow is a list of all Counting Game Admin commands:");
         JsonUtil.sendJSON(player, " &7&l● &e/cga [help]", "&eOpens this help page.\n\n&7Click to run.", "/countinggameadmin help", ClickEvent.Action.RUN_COMMAND);
-        JsonUtil.sendJSON(player, " &7&l● &e/cga reload", "&eReload the configuration files.\\n\\n&7Click to run.", "/countinggameadmin reload", ClickEvent.Action.RUN_COMMAND);
+        JsonUtil.sendJSON(player, " &7&l● &e/cga setCount <number>", "&eSet the count to a new value.\n\n&7Click to suggest.", "/countinggameadmin setCount ", ClickEvent.Action.SUGGEST_COMMAND);
+        JsonUtil.sendJSON(player, " &7&l● &e/cga reload", "&eReload the configuration files.\n\n&7Click to run.", "/countinggameadmin reload", ClickEvent.Action.RUN_COMMAND);
         JsonUtil.sendJSON(player, "&9&m&l----------------------------------");
     }
 }

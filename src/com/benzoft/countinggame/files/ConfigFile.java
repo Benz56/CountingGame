@@ -12,6 +12,7 @@ public final class ConfigFile {
     private final boolean invert;
     private final List<String> blacklist;
     private final long idleBroadcast;
+    private final boolean updateCheckerEnabled;
     private final boolean updateCheckerPermissionOnly;
 
     private ConfigFile() {
@@ -20,6 +21,7 @@ public final class ConfigFile {
         idleBroadcast = config.getLong("IdleBroadcast", 900);
         invert = config.getBoolean("InvertBlacklist", false);
         blacklist = config.getStringList("Blacklist");
+        updateCheckerEnabled = config.getBoolean("UpdateCheckerEnabled", true);
         updateCheckerPermissionOnly = config.getBoolean("UpdateCheckerPermissionOnly", false);
     }
 
@@ -29,6 +31,10 @@ public final class ConfigFile {
 
     public long getIdleBroadcast() {
         return idleBroadcast;
+    }
+
+    public boolean isUpdateCheckerEnabled() {
+        return updateCheckerEnabled;
     }
 
     public boolean isUpdateCheckerPermissionOnly() {

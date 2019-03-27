@@ -30,6 +30,7 @@ public final class MessagesFile extends AbstractFile {
 
     //Admin
     private String configReload;
+    private String countSet;
 
     private MessagesFile() {
         super("messages.yml");
@@ -76,6 +77,7 @@ public final class MessagesFile extends AbstractFile {
         nextNumber = (String) add("Messages.CountingGame.NextNumber", "%prefix% &eThe next number is &a%nextNumber%!");
 
         configReload = (String) add("Messages.Admin.ConfigurationsReloaded", "%prefix% &aConfiguration files successfully reloaded!");
+        countSet = (String) add("Messages.Admin.CountSet", "%prefix% &aThe count has been set to %number%!");
         save();
     }
 
@@ -162,6 +164,10 @@ public final class MessagesFile extends AbstractFile {
 
     public String getConfigReload() {
         return configReload;
+    }
+
+    public String getCountSet() {
+        return countSet;
     }
 
     public static MessagesFile getInstance() {

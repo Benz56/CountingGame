@@ -28,6 +28,8 @@ BlacklistedWorlds:
   #- world
 
 # Update Checker.
+# Enable or disable the update checker.
+UpdateCheckerEnabled: true
 # false: All OPs are notified of a new update when they join.
 # true: OPs are only notified if they have the countinggame.update permission as well.
 # N.B. any user with the countinggame.update permission is notified; OP or not.

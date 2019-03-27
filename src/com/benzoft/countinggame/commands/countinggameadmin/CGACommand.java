@@ -12,6 +12,7 @@ public class CGACommand extends AbstractCommand {
     public CGACommand(final CountingGame countingGame, final String commandName) {
         super(countingGame, commandName,
                 new Help("help", CGPerm.ADMIN, false, "h"),
+                new SetCount("setcount", CGPerm.ADMIN, false, "setc", "scount", "sc"),
                 new Reload(countingGame, "reload", CGPerm.ADMIN, false, "rel", "r")
         );
     }
