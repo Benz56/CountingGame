@@ -18,6 +18,7 @@ public class Help extends AbstractSubCommand {
         JsonUtil.sendJSON(player, " &7&oBelow is a list of all Counting Game Admin commands:");
         JsonUtil.sendJSON(player, " &7&l● &e/cga [help]", "&eOpens this help page.\n\n&7Click to run.", "/countinggameadmin help", ClickEvent.Action.RUN_COMMAND);
         JsonUtil.sendJSON(player, " &7&l● &e/cga setCount <number>", "&eSet the count to a new value.\n\n&7Click to suggest.", "/countinggameadmin setCount ", ClickEvent.Action.SUGGEST_COMMAND);
+        JsonUtil.sendJSON(player, " &7&l● &e/cga info", "&eDisplays info about the plugin.\n\n&7Click to run.", "/cga info", ClickEvent.Action.RUN_COMMAND);
         JsonUtil.sendJSON(player, " &7&l● &e/cga reload", "&eReload the configuration files.\n\n&7Click to run.", "/countinggameadmin reload", ClickEvent.Action.RUN_COMMAND);
         JsonUtil.sendJSON(player, "&9&m&l----------------------------------");
     }

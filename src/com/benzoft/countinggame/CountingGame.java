@@ -1,5 +1,6 @@
 package com.benzoft.countinggame;
 
+
 import com.benzoft.countinggame.broadcaster.Broadcaster;
 import com.benzoft.countinggame.commands.CommandRegistry;
 import com.benzoft.countinggame.files.ConfigFile;
@@ -13,11 +14,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class CountingGame extends JavaPlugin {
 
     private Broadcaster broadcaster;
+    private UpdateChecker updateChecker;
 
     @Override
     public void onEnable() {
         new Metrics(this);
-        new UpdateChecker(this).checkForUpdate();
+        updateChecker = new UpdateChecker(this);
+        updateChecker.checkForUpdate();
         getDataFolder().mkdirs();
         ConfigFile.getInstance();
         DataFile.getInstance().setDefaults();
@@ -38,5 +41,9 @@ public class CountingGame extends JavaPlugin {
 
     public Broadcaster getBroadcaster() {
         return broadcaster;
+    }
+
+    public UpdateChecker getUpdateChecker() {
+        return updateChecker;
     }
 }
