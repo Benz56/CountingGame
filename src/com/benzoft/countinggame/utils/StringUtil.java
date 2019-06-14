@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 public final class StringUtil {
 
-    public static String translate(final String string) {
+    static String translate(final String string) {
         return ChatColor.translateAlternateColorCodes('&', string);
     }
 
@@ -18,7 +18,11 @@ public final class StringUtil {
         message = message.replaceAll("%prefix%", MessagesFile.getInstance().getPrefix());
         if (!message.isEmpty()) {
             message = translate(message);
-            if (!message.contains("[\"") && !message.contains("\"]")) {
+            final boolean actionbar = message.toLowerCase().startsWith("<actionbar>");
+            if (actionbar) message = message.substring(11);
+            if (player != null && actionbar) {
+                ActionbarUtil.sendMessage(player, message);
+            } else if (!message.contains("[\"") && !message.contains("\"]")) {
                 if (player != null) {
                     player.sendMessage(message);
                 } else Bukkit.getServer().getConsoleSender().sendMessage(message);
