@@ -1,11 +1,14 @@
 package com.benzoft.countinggame.files;
 
 import com.benzoft.countinggame.CountingGame;
+import lombok.AccessLevel;
+import lombok.Getter;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
 
+@Getter(AccessLevel.PACKAGE)
 abstract class AbstractFile {
 
     private final File file;
@@ -40,14 +43,6 @@ abstract class AbstractFile {
 
     void setHeader(final String... lines) {
         config.options().header(String.join("\n", lines) + "\n");
-    }
-
-    File getFile() {
-        return file;
-    }
-
-    YamlConfiguration getConfig() {
-        return config;
     }
 
     void save() {

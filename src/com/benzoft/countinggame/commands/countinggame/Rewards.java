@@ -15,7 +15,7 @@ public class Rewards extends AbstractSubCommand {
 
     private static final int ENTRIES_PER_PAGE = 8;
 
-    public Rewards(final String name, final CGPerm permission, final boolean playerOnly, final String... aliases) {
+    Rewards(final String name, final CGPerm permission, final boolean playerOnly, final String... aliases) {
         super(name, permission, playerOnly, aliases);
     }
 

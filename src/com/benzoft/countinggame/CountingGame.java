@@ -8,9 +8,11 @@ import com.benzoft.countinggame.files.DataFile;
 import com.benzoft.countinggame.files.MessagesFile;
 import com.benzoft.countinggame.files.RewardsFile;
 import com.benzoft.countinggame.listeners.PlayerChatListener;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+@Getter
 public class CountingGame extends JavaPlugin {
 
     private Broadcaster broadcaster;
@@ -37,13 +39,5 @@ public class CountingGame extends JavaPlugin {
     public void onDisable() {
         broadcaster.stop();
         DataFile.getInstance().save();
-    }
-
-    public Broadcaster getBroadcaster() {
-        return broadcaster;
-    }
-
-    public UpdateChecker getUpdateChecker() {
-        return updateChecker;
     }
 }

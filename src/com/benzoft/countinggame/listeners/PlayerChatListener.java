@@ -18,7 +18,6 @@ import java.util.UUID;
 public class PlayerChatListener implements Listener {
 
     private final CountingGame countingGame;
-
     private UUID lastCounter;
 
     public PlayerChatListener(final CountingGame countingGame) {
@@ -57,6 +56,5 @@ public class PlayerChatListener implements Listener {
 
         final CGReward reward = RewardsFile.getInstance().getReward(DataFile.getInstance().getCount());
         if (reward != null) Bukkit.getScheduler().runTask(countingGame, () -> reward.execute(sender));
-
     }
 }

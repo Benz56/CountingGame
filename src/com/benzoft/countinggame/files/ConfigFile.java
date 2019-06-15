@@ -1,6 +1,7 @@
 package com.benzoft.countinggame.files;
 
 import com.benzoft.countinggame.CountingGame;
+import lombok.Getter;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -11,8 +12,11 @@ public final class ConfigFile {
     private static ConfigFile file;
     private final boolean invert;
     private final List<String> blacklist;
+    @Getter
     private final long idleBroadcast;
+    @Getter
     private final boolean updateCheckerEnabled;
+    @Getter
     private final boolean updateCheckerPermissionOnly;
 
     private ConfigFile() {
@@ -25,22 +29,6 @@ public final class ConfigFile {
         updateCheckerPermissionOnly = config.getBoolean("UpdateCheckerPermissionOnly", false);
     }
 
-    public boolean isCGWorld(final World world) {
-        return invert == blacklist.contains(world.getName());
-    }
-
-    public long getIdleBroadcast() {
-        return idleBroadcast;
-    }
-
-    public boolean isUpdateCheckerEnabled() {
-        return updateCheckerEnabled;
-    }
-
-    public boolean isUpdateCheckerPermissionOnly() {
-        return updateCheckerPermissionOnly;
-    }
-
     public static ConfigFile getInstance() {
         file = file == null ? new ConfigFile() : file;
         return file;
@@ -50,5 +38,9 @@ public final class ConfigFile {
         countingGame.reloadConfig();
         countingGame.saveDefaultConfig();
         file = new ConfigFile();
+    }
+
+    public boolean isCGWorld(final World world) {
+        return invert == blacklist.contains(world.getName());
     }
 }

@@ -1,5 +1,6 @@
 package com.benzoft.countinggame;
 
+import lombok.Getter;
 import org.bukkit.entity.Player;
 
 public enum CGPerm {
@@ -12,17 +13,14 @@ public enum CGPerm {
     ADMIN("countinggame.admin"),
     UPDATE("countinggame.update");
 
-    private final String permission;
+    @Getter
+    private final String permissionString;
 
-    CGPerm(final String permission) {
-        this.permission = permission;
-    }
-
-    public String getPermissionString() {
-        return permission;
+    CGPerm(final String permissionString) {
+        this.permissionString = permissionString;
     }
 
     public boolean checkPermission(final Player player) {
-        return player == null || player.isOp() || player.hasPermission(permission);
+        return player == null || player.isOp() || player.hasPermission(permissionString);
     }
 }

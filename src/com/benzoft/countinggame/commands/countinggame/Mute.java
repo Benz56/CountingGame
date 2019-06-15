@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 public class Mute extends AbstractSubCommand {
 
-    public Mute(final String name, final CGPerm permission, final boolean playerOnly, final String... aliases) {
+    Mute(final String name, final CGPerm permission, final boolean playerOnly, final String... aliases) {
         super(name, permission, playerOnly, aliases);
     }
 

@@ -2,6 +2,7 @@ package com.benzoft.countinggame;
 
 import com.benzoft.countinggame.files.ConfigFile;
 import com.benzoft.countinggame.utils.StringUtil;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -20,21 +21,24 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 
+@SuppressWarnings("WeakerAccess") // Suppress as the necesseray access level is not correctly recognized by IntelliJ. (Lombok might be the culprit)
 public class UpdateChecker implements Listener {
 
     private static final int ID = 64011;
     private static final Permission UPDATE_PERM = new Permission(CGPerm.UPDATE.getPermissionString(), PermissionDefault.FALSE);
 
     private final JavaPlugin javaPlugin;
+    @Getter
     private final String localPluginVersion;
+    @Getter
     private String spigotPluginVersion;
 
-    UpdateChecker(final JavaPlugin main) {
+    public UpdateChecker(final JavaPlugin main) {
         javaPlugin = main;
         localPluginVersion = main.getDescription().getVersion();
     }
 
-    void checkForUpdate() {
+    public void checkForUpdate() {
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -76,13 +80,5 @@ public class UpdateChecker implements Listener {
                 });
             }
         }.runTaskTimer(javaPlugin, 0, 12_000);
-    }
-
-    public String getLocalPluginVersion() {
-        return localPluginVersion;
-    }
-
-    public String getSpigotPluginVersion() {
-        return spigotPluginVersion;
     }
 }

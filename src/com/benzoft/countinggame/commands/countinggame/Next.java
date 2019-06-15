@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 
 public class Next extends AbstractSubCommand {
 
-    public Next(final String name, final CGPerm permission, final boolean playerOnly, final String... aliases) {
+    Next(final String name, final CGPerm permission, final boolean playerOnly, final String... aliases) {
         super(name, permission, playerOnly, aliases);
     }
 

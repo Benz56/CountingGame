@@ -2,6 +2,7 @@ package com.benzoft.countinggame.broadcaster;
 
 import com.benzoft.countinggame.CountingGame;
 import com.benzoft.countinggame.files.ConfigFile;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 
 public class Broadcaster {
@@ -9,6 +10,7 @@ public class Broadcaster {
     private final CountingGame countingGame;
 
     private Integer taskId;
+    @Getter
     private BroadcasterTask task;
 
     public Broadcaster(final CountingGame countingGame) {
@@ -25,9 +27,5 @@ public class Broadcaster {
     public void stop() {
         if (taskId != null) Bukkit.getScheduler().cancelTask(taskId);
         taskId = null;
-    }
-
-    public BroadcasterTask getTask() {
-        return task;
     }
 }

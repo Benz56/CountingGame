@@ -14,7 +14,7 @@ public class Reload extends AbstractSubCommand {
 
     private final CountingGame countingGame;
 
-    public Reload(final CountingGame countingGame, final String name, final CGPerm permission, final boolean playerOnly, final String... aliases) {
+    Reload(final CountingGame countingGame, final String name, final CGPerm permission, final boolean playerOnly, final String... aliases) {
         super(name, permission, playerOnly, aliases);
         this.countingGame = countingGame;
     }

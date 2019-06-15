@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 public class Unmute extends AbstractSubCommand {
 
-    public Unmute(final String name, final CGPerm permission, final boolean playerOnly, final String... aliases) {
+    Unmute(final String name, final CGPerm permission, final boolean playerOnly, final String... aliases) {
         super(name, permission, playerOnly, aliases);
     }
 

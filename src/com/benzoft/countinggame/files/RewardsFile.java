@@ -2,6 +2,7 @@ package com.benzoft.countinggame.files;
 
 import com.benzoft.countinggame.CGReward;
 import com.benzoft.countinggame.utils.StringUtil;
+import lombok.Getter;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,10 +12,21 @@ import java.util.stream.Stream;
 public final class RewardsFile extends AbstractFile {
 
     private static RewardsFile file;
+    @Getter
     private List<CGReward> rewards;
 
     private RewardsFile() {
         super("rewards.yml");
+    }
+
+    public static RewardsFile getInstance() {
+        file = file == null ? new RewardsFile() : file;
+        return file;
+    }
+
+    public static void reload() {
+        file = new RewardsFile();
+        file.setDefaults();
     }
 
     @Override
@@ -51,19 +63,5 @@ public final class RewardsFile extends AbstractFile {
 
     public CGReward getReward(final int count) {
         return rewards.stream().filter(reward -> reward.getTargetCount() == count).findFirst().orElse(null);
-    }
-
-    public List<CGReward> getRewards() {
-        return rewards;
-    }
-
-    public static RewardsFile getInstance() {
-        file = file == null ? new RewardsFile() : file;
-        return file;
-    }
-
-    public static void reload() {
-        file = new RewardsFile();
-        file.setDefaults();
     }
 }

@@ -1,6 +1,7 @@
 package com.benzoft.countinggame;
 
 import com.benzoft.countinggame.files.DataFile;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -8,8 +9,9 @@ import javax.annotation.Nonnull;
 import java.util.Collections;
 import java.util.List;
 
+@Getter
 public class CGReward implements Comparable<CGReward> {
-
+    
     private final int targetCount;
     private final List<String> rewards;
 
@@ -26,14 +28,6 @@ public class CGReward implements Comparable<CGReward> {
         final String count = String.valueOf(DataFile.getInstance().getCount());
         rewards.forEach(reward -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), reward.substring(reward.startsWith("/") ? 1 : 0).replaceAll("%player%", player.getName()).replaceAll("%number%", count).replaceAll("%count%", count)));
 
-    }
-
-    public int getTargetCount() {
-        return targetCount;
-    }
-
-    public List<String> getRewards() {
-        return rewards;
     }
 
     @Override

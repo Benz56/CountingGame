@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 
 public class Help extends AbstractSubCommand {
 
-    public Help(final String name, final CGPerm permission, final boolean playerOnly, final String... aliases) {
+    Help(final String name, final CGPerm permission, final boolean playerOnly, final String... aliases) {
         super(name, permission, playerOnly, aliases);
     }
 

@@ -1,7 +1,10 @@
 package com.benzoft.countinggame.files;
 
+import lombok.Getter;
+
 import java.io.IOException;
 
+@Getter
 public final class MessagesFile extends AbstractFile {
 
     private static MessagesFile file;
@@ -99,85 +102,5 @@ public final class MessagesFile extends AbstractFile {
         } catch (final IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public String getPrefix() {
-        return prefix;
-    }
-
-    public String getInvalidPermission() {
-        return invalidPermission;
-    }
-
-    public String getNoCommands() {
-        return noCommands;
-    }
-
-    public String getUnknownPlayer() {
-        return unknownPlayer;
-    }
-
-    public String getPlayerOnly() {
-        return playerOnly;
-    }
-
-    public String getInvalidArguments() {
-        return invalidArguments;
-    }
-
-    public String getCountSent() {
-        return countSent;
-    }
-
-    public String getLastCounter() {
-        return lastCounter;
-    }
-
-    public String getIdleBroadcast() {
-        return idleBroadcast;
-    }
-
-    public String getMuted() {
-        return muted;
-    }
-
-    public String getMutedPlayer() {
-        return mutedPlayer;
-    }
-
-    public String getAlreadyMuted() {
-        return alreadyMuted;
-    }
-
-    public String getAlreadyMutedPlayer() {
-        return alreadyMutedPlayer;
-    }
-
-    public String getUnmuted() {
-        return unmuted;
-    }
-
-    public String getUnmutedPlayer() {
-        return unmutedPlayer;
-    }
-
-    public String getNotMuted() {
-        return notMuted;
-    }
-
-    public String getNotMutedPlayer() {
-        return notMutedPlayer;
-    }
-
-    public String getNextNumber() {
-        return nextNumber;
-    }
-
-    public String getConfigReload() {
-        return configReload;
-    }
-
-    public String getCountSet() {
-        return countSet;
     }
 }

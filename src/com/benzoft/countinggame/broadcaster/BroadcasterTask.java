@@ -3,11 +3,13 @@ package com.benzoft.countinggame.broadcaster;
 import com.benzoft.countinggame.files.DataFile;
 import com.benzoft.countinggame.files.MessagesFile;
 import com.benzoft.countinggame.utils.StringUtil;
+import lombok.Setter;
 
 public class BroadcasterTask implements Runnable {
 
     private final long idleTime;
 
+    @Setter
     private boolean canBroadcast;
     private long currentIdleTime;
 
@@ -27,9 +29,5 @@ public class BroadcasterTask implements Runnable {
 
     public void resetIdleTime() {
         currentIdleTime = 0;
-    }
-
-    public void setCanBroadcast(final boolean canBroadcast) {
-        this.canBroadcast = canBroadcast;
     }
 }

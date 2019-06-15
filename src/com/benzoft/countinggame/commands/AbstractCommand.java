@@ -4,6 +4,8 @@ import com.benzoft.countinggame.CGPerm;
 import com.benzoft.countinggame.CountingGame;
 import com.benzoft.countinggame.files.MessagesFile;
 import com.benzoft.countinggame.utils.StringUtil;
+import lombok.AccessLevel;
+import lombok.Getter;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -13,6 +15,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter(AccessLevel.PROTECTED)
 public abstract class AbstractCommand implements CommandExecutor {
 
     private final CountingGame countingGame;
@@ -36,7 +39,8 @@ public abstract class AbstractCommand implements CommandExecutor {
 
         if (args.length != 0) {
             for (final AbstractSubCommand subCommand : subCommands) {
-                if (!subCommand.getName().equalsIgnoreCase(args[0]) && subCommand.getAliases().stream().noneMatch(alias -> alias.equalsIgnoreCase(args[0]))) continue;
+                if (!subCommand.getName().equalsIgnoreCase(args[0]) && subCommand.getAliases().stream().noneMatch(alias -> alias.equalsIgnoreCase(args[0])))
+                    continue;
                 if (!subCommand.getPermission().checkPermission(player)) {
                     StringUtil.msgSend(player, MessagesFile.getInstance().getInvalidPermission());
                     return true;
@@ -53,16 +57,4 @@ public abstract class AbstractCommand implements CommandExecutor {
     }
 
     protected abstract void onCommand(final Player player, final String[] args);
-
-    public CountingGame getCountingGame() {
-        return countingGame;
-    }
-
-    String getCommandName() {
-        return commandName;
-    }
-
-    protected Set<AbstractSubCommand> getSubCommands() {
-        return subCommands;
-    }
 }
