@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-@SuppressWarnings("WeakerAccess") // Suppress as the necesseray access level is not correctly recognized by IntelliJ. (Lombok might be the culprit)
+@SuppressWarnings("WeakerAccess") // Suppress as the necessary access level is not correctly recognized by IntelliJ. (Lombok might be the culprit)
 public class UpdateChecker implements Listener {
 
     private static final int ID = 64011;

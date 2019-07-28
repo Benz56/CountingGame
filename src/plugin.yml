@@ -1,5 +1,5 @@
 name: CountingGame
-version: 1.4.0
+version: 1.4.1
 api-version: 1.13
 author: Benz56
 description: Bring life to your chat!
@@ -13,3 +13,21 @@ commands:
     usage: /countinggameadmin
     description: Admin commands.
     aliases: [countingadmin, cgameadmin, cga]
+permissions:
+  countinggame.commands:
+    description: Permission to use any command.
+  countinggame.commands.help:
+    description: Permission to use the help command.
+  countinggame.commands.unmute:
+    description: Permission to use the unmute command.
+  countinggame.commands.mute:
+    description: Permission to use the mute command.
+  countinggame.commands.rewards:
+    description: Permission to use the rewards command.
+  countinggame.commands.next:
+    description: Permission to use the next command.
+  countinggame.admin:
+    description: Permission to use admin commands.
+  countinggame.update:
+    description: Receive update notifications.
+    default: false
