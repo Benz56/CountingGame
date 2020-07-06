@@ -20,6 +20,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.stream.IntStream;
 
 @SuppressWarnings("WeakerAccess") // Suppress as the necessary access level is not correctly recognized by IntelliJ. (Lombok might be the culprit)
 public class UpdateChecker implements Listener {
@@ -57,8 +59,7 @@ public class UpdateChecker implements Listener {
                         return;
                     }
 
-                    //Check if the requested version is the same as the one in your plugin.yml.
-                    if (localPluginVersion.equals(spigotPluginVersion)) return;
+                    if (isLatestVersion()) return;
 
                     StringUtil.msgSend(null, "&7[&9Counting Game&7] &fA new update is available at:");
                     StringUtil.msgSend(null, "&bhttps://www.spigotmc.org/resources/" + ID + "/updates");
@@ -80,5 +81,15 @@ public class UpdateChecker implements Listener {
                 });
             }
         }.runTaskTimer(javaPlugin, 0, 12_000);
+    }
+
+    private boolean isLatestVersion() {
+        try {
+            final int[] local = Arrays.stream(localPluginVersion.split("\\.")).mapToInt(Integer::parseInt).toArray();
+            final int[] spigot = Arrays.stream(spigotPluginVersion.split("\\.")).mapToInt(Integer::parseInt).toArray();
+            return IntStream.range(0, local.length).filter(i -> local[i] != spigot[i]).limit(1).mapToObj(i -> local[i] >= spigot[i]).findFirst().orElse(true);
+        } catch (final NumberFormatException ignored) {
+            return localPluginVersion.equals(spigotPluginVersion);
+        }
     }
 }
